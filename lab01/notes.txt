@@ -1,0 +1,4 @@
+2 pliki: sprawko w pdf + kod
+
+zad 4. :
+częstotliwość próbkowania 48 kHZ
