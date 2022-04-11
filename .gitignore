@@ -1,7 +1,12 @@
 .vscode
 tmp
-lab??.zip
+*.zip
+out
+report.html
 
 lab04/obrazy/*/*
 !lab04/obrazy/*/bikes*.png
 lab04/lab4.md
+
+lab05/obrazy/*/*
+!lab05/obrazy/*/bikes*.png
