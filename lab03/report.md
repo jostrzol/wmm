@@ -3,9 +3,10 @@
 <h1 style="text-align: center;">
 <div style="color:grey; font-size: 0.6em;">Jakub Ostrzołek</div>
 <!-- TODO: tytuł -->
-<div>WMM - lab. 3 - dźwięk, </div>
+<div>WMM - lab. 3 - dźwięk</div>
 </h1>
 
+# Część A - Cakewalk
 ## Zadanie 1
 Przy oryginalnym filtrze dźwięk gitary był mocniejszy i bardziej pełny. Po zadanej filtracji, tak jak napisano w instrukcji, stał się lżejszy i bardziej "dzwoniący". Wynika to z faktu, że zostały wycięte niskie tony (stąd dźwięk mniej pełny), a podbite tony wysokie (stąd mocniejsze "dzwonienie").
 
@@ -79,6 +80,78 @@ Kompresor:
 
 Uznałem, że do piosenki pasuje mocna kompresja perkusji, dlatego ustawiłem pokrętło COMPRESS na ok. 36, MAKE-UP na 24, a TIME CONSTANTS na FAST.
 
+# Część B - TTS, STT
+## Zadanie 1
+### Real-Time Voice Cloning
+Do tego syntezatora była potrzebna próbka mojego głosu.
 
+Syntezator starał się naśladować mój głos, jednak wygenerowana próbka różni się dosyć znacząco od mojego oryginalnego nagrania. Oprócz tego, że barwa głosu nie została w pełni wiernie oddana, to słychać również różnicę w dynamice wypowiedzi, np. w długości przerw między słowami i melodii mowy. Ponadto, na ścieżce dźwiękowej słychać czasami artefakty, tłumiące na chwilę dźwięk. Przypadłości te mogą częściowo wynikać z małej długości próbki mojego głosu (zaledwie kilka sekund) i niskiej jakości mikrofonu użytego do nagrania.
+
+Pomimo wyżej wymienionych wad, głos jest wyraźny i nie brzmi całkowicie syntetycznie, jednak da się rozpoznać, że raczej nie jest to głos prawdziwej osoby.
+
+### Google TTS
+Ten syntezator daje najbardziej sztucznie brzmiące nagrania. Bardzo łatwo jest je odróżnić od prawdziwego, ludzkiego głosu.
+
+Natomiast nagranie jest z pewnością wyraźne. Mam wrażenie, że czasami nawet do przesady wyraźne, np. końcówki wyrazów w prawdziwej mowie często artykułowane są ciszej i bardziej niedbale, czego nie słychać w głosie tego syntezatora.
+
+### Tacotron2 + Waveglow
+Ten syntezator generuje całkiem wiarygodny głos, zarówno pod względem barwy, jak i, co ważniejsze, dynamiki. Głos brzmi na tyle naturalnie, że byłbym w stanie uwierzyć, że został on nagrany przez prawdziwego człowieka.
+
+Przez cały czas trwania słychać dosyć wysoki ton, co obniża jego jakość, ale nie umniejsza jego naturalności. Ton prawdopodobnie pochodzi ze zbioru danych uczących i został on wyuczony przez model. 
+
+### Mozilla TTS
+Ten syntezator daje według mnie najlepsze efekty. Nie dość, że głos brzmi bardzo naturalnie, to jakość jest lepsza, niż w przypadku Waveglow TTS (m.in. dlatego, że nie ma tutaj wspomnianych wyżej wysokich tonów). Nie mam żadnych zarzutów do tego syntezatora.
+
+### Podsumowanie
+Uszeregowane syntezatory według malejącej wiarygodności: Mozilla, Waveglow, Voice Cloning, Google.
+Uszeregowane syntezatory według malejącej jakości i wyraźności: Mozilla, Waveglow, Google, Voice Cloning.
+
+## Zadanie 2
+Nagranie  
+![](spec-record.png)
+
+Google TTS  
+![](spec-google.png)
+
+Tacotron2 + Waveglow  
+![](spec-waveglow.png)
+
+Mozilla TTS  
+![](spec-mozilla.png)
+
+### Nagranie
+Jako jedyne jest dwukanałowe, a zatem żaden z syntezatorów nie produkuje dźwięku stereo. Również jako jedyne ma częstotliwość próbkowania równą 44 100 Hz, gdzie reszta ma tę częstotliwość w okolicach 22 000 Hz.
+
+Na spektrogramie widać dużo szumów, ponieważ było ono stworzone niskiej jakości mikrofonem.
+
+W porównaniu z innymi spektrogramami, na tym nie widać wyraźnie oddzielonych od siebie tonów harmonicznych. Może to wynikać z kilku faktów, takich jak niższy ton głosu (wszystkie syntezatory miały głos żeński, a ja męski), czy słaba jakość mikrofonu.
+
+### Google TTS
+Ze spektrogramu również można odczytać, że ten syntezator produkuje najbardziej sztucznie brzmiący głos. Wskazują na to takie właściwości jak:
+* podczas mówienia nie ma żadnych szumów, a jedynie zsyntezowany głos,
+* między dźwiękami jest całkowita cisza, tu również nie ma tam żadnych szumów,
+* głos bardzo ostro oddziela się od od tła, np. ostro się zaczyna i kończy, widać praktycznie tylko czyste, "płaskie" częstotliwości.
+
+### Tacotron2 + Waveglow
+Tutaj spektrogram dużo bardziej przypomina spektrogram mojego nagrania. Dźwięki nie są tak bardzo ostre jak w przypadku Google TTS i przez cały czas jest jakiś szum tła. Jest to głos żeński, dlatego harmoniczne sięgają wyżej niż w moim nagraniu.
+
+Bardzo dobrze widać tutaj wysoki ton, o którym wspominałem przy zadaniu 1. W zasadzie widać nawet 3 tony: w okolicach 500 Hz, 3000 Hz i 5500 Hz, które ciągną się przez całą długość nagrania.
+### Mozilla TTS
+Spektrogram bardzo podobny do poprzedniego. Różnice, jakie widać gołym okiem, to trochę mniejsza ilość szumów i brak ciągłych tonów opisanych wyżej.
+
+## Zadanie 3
+### CMUSphinx
+*this is my voice phone call and i hope both sides moved to*
+### Google
+*this is my voice sample and I hope that it sounds good*
+### Moilla
+*this is my vice sample and i hope that it sounds good*
+
+### Komentarz
+Algorytm Google poradził sobie bezbłędnie, co nie powinno dziwić, ponieważ firma ta mocno rozwija dziedzinę STT.
+
+Algorytm Mozilli pomylił jedno słowo: "voice" na "vice", a zatem różniące się tylko jedną literą. Również bardzo dobry wynik.
+
+CMUSphinx poprawnie rozpoznał ok. 50% tekstu. Widać, że próbował użyć często wykorzystywanego wzorca: *voice phone call*, kiedy nie potrafił dokładnie określić moich słów.
 
 </div>
