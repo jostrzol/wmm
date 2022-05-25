@@ -23,10 +23,10 @@ Nagranie chóru brzmiało dla mnie "kościelnie", dlatego wybrałem odpowiedź i
 Po dodaniu pogłosu, chór brzmiał pełniej i jeszcze bardziej "kościelnie". Odniosłem wrażenie, jakby składał się z większej liczby osób niż w oryginale. Wrażenie to może wynikać z faktu, że naturalnie im większy chór, tym trudniej idealnie się zsynchronizować. Dlatego po wprowadzeniu pogłosu, który rozmywa każdy dźwięk w czasie, występuje omawiany efekt.
 
 ### Kompresja dynamiki
-Orygninał
+Orygninał  
 ![](drums_unfreezed.png)
 
-Freezed
+Freezed  
 ![](drums_freezed.png)
 
 Jak słychać i widać na wykresie sygnału, po użyciu kompresora pierwsza połowa nagrania została bardziej wzmocniona niż druga. Oprócz tego chwile między uderzeniami w talerze w drugiej części nagrania zostały bardziej wzmocnione niż same uderzenia w talerze.
@@ -47,12 +47,13 @@ Z powyższych zależności wynika, że najłatwiej będzie rozpoznać, czy dźwi
 Na trudność w lokalizacji dźwięku wpływa też fakt, że, jak wcześniej wspomniałem, każdy posiada inną charakterystykę wrażliwości na konkretne częstotliwości w zależności od kierunku dochodzenia dźwięku. A zatem nie istnieje model symulacji tego wrażenia, który sprawdzałby się idealnie dla wszystkich. W rzeczywistości wykorzystuje się uśrednione modele, opracowane po zmierzeniu tej charekterystyki wielu osobom.
 
 ## Zadanie 4
-### OSC1/OSC2
-Kanał OSC1 daje niższy ton niż kanał OSC2. Na obu kanałach da się usłyszeć charakterystyczną, agresywną barwę fali kwadratowej. Złączenie obu kanałów daje dużo bardziej interesujący i mniej agresywny dźwięk niż każdy z kanałów osobno.
+### Ścieżka 1
+* OSC1/OSC2
 
-### Obwiednia
-Obwiednia kontroluje zachowanie filtra w czasie - im wyżej jest punkt na obwiedni tym więcej wyższych tonów słychać w danym momencie i vice versa. Dla każdego granego dźwięku przebieg jest odtwarzany od nowa oraz jest on zapętlony.
+	Kanał OSC1 daje niższy ton niż kanał OSC2. Na obu kanałach da się usłyszeć charakterystyczną, agresywną barwę fali kwadratowej. Złączenie obu kanałów daje dużo bardziej interesujący i mniej agresywny dźwięk niż każdy z kanałów osobno.
+* Obwiednia
 
+	Obwiednia kontroluje zachowanie filtra w czasie - im wyżej jest punkt na obwiedni tym więcej wyższych tonów słychać w danym momencie i vice versa. Dla każdego granego dźwięku przebieg jest odtwarzany od nowa oraz jest on zapętlony.
 ### Ścieżka 2
 Tutaj słychać łagodniejsze od fal kwadratowych fale typu sawtooth, a przebieg czasowy charakterystyki filtra jest dużo wolniejszy. Zastosowałem preset "ARP 2050 Punk TAL", który zgodnie z nazwą dodaje pankowego klimatu do syntezatora.
 
@@ -82,24 +83,24 @@ Uznałem, że do piosenki pasuje mocna kompresja perkusji, dlatego ustawiłem po
 
 # Część B - TTS, STT
 ## Zadanie 1
-### Real-Time Voice Cloning
-Do tego syntezatora była potrzebna próbka mojego głosu.
+### Real-Time Voice Cloning (plik `tts-clone.wav`)
+Do tego syntezatora była potrzebna próbka mojego głosu (plik `record_en.wav`).
 
 Syntezator starał się naśladować mój głos, jednak wygenerowana próbka różni się dosyć znacząco od mojego oryginalnego nagrania. Oprócz tego, że barwa głosu nie została w pełni wiernie oddana, to słychać również różnicę w dynamice wypowiedzi, np. w długości przerw między słowami i melodii mowy. Ponadto, na ścieżce dźwiękowej słychać czasami artefakty, tłumiące na chwilę dźwięk. Przypadłości te mogą częściowo wynikać z małej długości próbki mojego głosu (zaledwie kilka sekund) i niskiej jakości mikrofonu użytego do nagrania.
 
 Pomimo wyżej wymienionych wad, głos jest wyraźny i nie brzmi całkowicie syntetycznie, jednak da się rozpoznać, że raczej nie jest to głos prawdziwej osoby.
 
-### Google TTS
+### Google TTS (plik `tts-google.wav`)
 Ten syntezator daje najbardziej sztucznie brzmiące nagrania. Bardzo łatwo jest je odróżnić od prawdziwego, ludzkiego głosu.
 
 Natomiast nagranie jest z pewnością wyraźne. Mam wrażenie, że czasami nawet do przesady wyraźne, np. końcówki wyrazów w prawdziwej mowie często artykułowane są ciszej i bardziej niedbale, czego nie słychać w głosie tego syntezatora.
 
-### Tacotron2 + Waveglow
+### Tacotron2 + Waveglow (plik `tts-waveglow.wav`)
 Ten syntezator generuje całkiem wiarygodny głos, zarówno pod względem barwy, jak i, co ważniejsze, dynamiki. Głos brzmi na tyle naturalnie, że byłbym w stanie uwierzyć, że został on nagrany przez prawdziwego człowieka.
 
 Przez cały czas trwania słychać dosyć wysoki ton, co obniża jego jakość, ale nie umniejsza jego naturalności. Ton prawdopodobnie pochodzi ze zbioru danych uczących i został on wyuczony przez model. 
 
-### Mozilla TTS
+### Mozilla TTS (plik `tts-mozilla.wav`)
 Ten syntezator daje według mnie najlepsze efekty. Nie dość, że głos brzmi bardzo naturalnie, to jakość jest lepsza, niż w przypadku Waveglow TTS (m.in. dlatego, że nie ma tutaj wspomnianych wyżej wysokich tonów). Nie mam żadnych zarzutów do tego syntezatora.
 
 ### Podsumowanie
@@ -119,27 +120,30 @@ Tacotron2 + Waveglow
 Mozilla TTS  
 ![](spec-mozilla.png)
 
-### Nagranie
+### Nagranie (plik `record_en.wav`)
 Jako jedyne jest dwukanałowe, a zatem żaden z syntezatorów nie produkuje dźwięku stereo. Również jako jedyne ma częstotliwość próbkowania równą 44 100 Hz, gdzie reszta ma tę częstotliwość w okolicach 22 000 Hz.
 
 Na spektrogramie widać dużo szumów, ponieważ było ono stworzone niskiej jakości mikrofonem.
 
 W porównaniu z innymi spektrogramami, na tym nie widać wyraźnie oddzielonych od siebie tonów harmonicznych. Może to wynikać z kilku faktów, takich jak niższy ton głosu (wszystkie syntezatory miały głos żeński, a ja męski), czy słaba jakość mikrofonu.
 
-### Google TTS
+### Google TTS (plik `tts-2-google.wav`)
 Ze spektrogramu również można odczytać, że ten syntezator produkuje najbardziej sztucznie brzmiący głos. Wskazują na to takie właściwości jak:
 * podczas mówienia nie ma żadnych szumów, a jedynie zsyntezowany głos,
 * między dźwiękami jest całkowita cisza, tu również nie ma tam żadnych szumów,
 * głos bardzo ostro oddziela się od od tła, np. ostro się zaczyna i kończy, widać praktycznie tylko czyste, "płaskie" częstotliwości.
 
-### Tacotron2 + Waveglow
+### Tacotron2 + Waveglow (plik `tts-2-waveglow.wav`)
 Tutaj spektrogram dużo bardziej przypomina spektrogram mojego nagrania. Dźwięki nie są tak bardzo ostre jak w przypadku Google TTS i przez cały czas jest jakiś szum tła. Jest to głos żeński, dlatego harmoniczne sięgają wyżej niż w moim nagraniu.
 
 Bardzo dobrze widać tutaj wysoki ton, o którym wspominałem przy zadaniu 1. W zasadzie widać nawet 3 tony: w okolicach 500 Hz, 3000 Hz i 5500 Hz, które ciągną się przez całą długość nagrania.
-### Mozilla TTS
+### Mozilla TTS (plik `tts-2-mozilla.wav`)
 Spektrogram bardzo podobny do poprzedniego. Różnice, jakie widać gołym okiem, to trochę mniejsza ilość szumów i brak ciągłych tonów opisanych wyżej.
 
 ## Zadanie 3
+### Nagranie
+Nagrenie użyte do STT znajduje się w spliku `record_en.wav`. Jego prawdziwa treść brzmi:
+*This is my voice sample and I hope that it sound good.*
 ### CMUSphinx
 *this is my voice phone call and i hope both sides moved to*
 ### Google
