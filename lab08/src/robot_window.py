@@ -87,9 +87,6 @@ class RobotWindow(BaseWindowConfig):
             (0.0, 0.0, 1.0),
             (0.0, 0.0, 1.0),
         )
-        # scale_matrix = Matrix44.from_scale((2.0, 1.0, 1.0))
-        # Matrix44.from_x_rotation
-        # pvm_matrix = projection * lookat * scale_matrix
 
         for item in self.items.values():
             translation = Matrix44.from_translation(item.translation)
