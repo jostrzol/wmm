@@ -3,6 +3,7 @@ tmp
 *.zip
 out
 report.html
+__pycache__
 
 lab04/obrazy/*/*
 !lab04/obrazy/*/bikes*.png
