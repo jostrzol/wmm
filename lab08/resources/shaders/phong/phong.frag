@@ -9,7 +9,7 @@ in vec3 v_position;
 in vec3 v_normal;
 out vec4 f_color;
 
-const vec3 light_position = vec3(10.0, 25.0, 0.0);
+const vec3 light_position = vec3(10.0, 25.0, -15.0);
 
 const vec4 ambient_light_color = vec4(0.5, 0.1, 0.2, 0.4);
 
@@ -22,6 +22,7 @@ vec4 diffuse(vec3 normal, vec3 light_direction)
     // how much of the light is diffused (fraction)
     float light_fraction = max(dot(normal, -light_direction), 0.0);
 
+    // multiplying all factors
     return diffuse_strength * light_fraction * diffuse_light_color;
 }
 
@@ -34,6 +35,7 @@ vec4 specular(vec3 normal, vec3 light_direction)
     // how much of the light is reflected (fraction)
     float light_fraction = max(dot(reflected_light_direction, normal), 0);
 
+    // multiplying all factors
     return specular_strength * pow(light_fraction, shininess) * specular_light_color;
 }
 
@@ -49,6 +51,6 @@ void main()
     vec4 diffuse_factor = diffuse(normal, light_direction);
     vec4 specular_factor = specular(normal, light_direction);
 
-    // sum of each factor multiplied by the object's color gives the final output
+    // sum of each factor multiplied by the object's color gives the final color
     f_color = (ambient_factor + diffuse_factor + specular_factor) * obj_color;
 }

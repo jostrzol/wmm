@@ -27,10 +27,10 @@ class PhongWindow(BaseWindowConfig):
             default=Vector4((0.5, 0.7, 0.4, 0.8)))
         self.specular_light_color = ShaderUniformArray(
             self.program, "specular_light_color",
-            default=Vector4((0.2, 0.3, 0.8, 0.8)))
+            default=Vector4((1, 1, 1, 1)))
 
         self.shininess = ShaderUniformFloat(
-            self.program, "shininess", default=0.2)
+            self.program, "shininess", default=5)
 
     def render(self, time: float, frame_time: float):
         self.ctx.clear(1.0, 1.0, 1.0, 0.0)
